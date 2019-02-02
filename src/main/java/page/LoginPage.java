@@ -12,7 +12,7 @@ public class LoginPage extends BasePage{
     private By username = By.id("login_account");
     private By password = By.xpath("//*[@password='true']");
     private By login = By.id("button_next");
-    By msg = By.id("md_content");
+    private By msg = By.id("md_content");
 
     String message;
     public LoginPage passwordFail(String username,String password){
