@@ -18,4 +18,9 @@ public class MainPage extends BasePage {
         find(profile).click();
         return new ProfilePage();
     }
+
+    public SearchPage gotoSearch(){
+        find(By.id("home_search")).click();
+        return new SearchPage();
+    }
 }
