@@ -19,7 +19,7 @@ public class LoginTest {
     static ProfilePage profilePage;
 
     @BeforeAll
-    static void beforAll() {
+    static void beforeAll() {
         mainPage = MainPage.start();
         profilePage = mainPage.gotoProfile();
     }
@@ -29,7 +29,7 @@ public class LoginTest {
             "18606535376,XXXXXXXX,用户名或密码错误",
             "1860653536,XXXXXXXX,手机号码填写错误"
     })
-    public void 密码登录(String username, String password, String exp) {
+    void 密码登录(String username, String password, String exp) {
 
         LoginPage loginPage = profilePage.gotoLogin();
         loginPage.passwordFail(username, password);

@@ -8,6 +8,7 @@ import org.openqa.selenium.By;
  */
 public class MainPage extends BasePage {
     By profile = By.id("user_profile_icon");
+    By search = By.id("home_search");
 
     public static MainPage start() {
         Driver.start();
@@ -20,7 +21,7 @@ public class MainPage extends BasePage {
     }
 
     public SearchPage gotoSearch(){
-        find(By.id("home_search")).click();
+        find(search).click();
         return new SearchPage();
     }
 }

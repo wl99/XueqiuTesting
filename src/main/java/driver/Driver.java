@@ -2,6 +2,7 @@ package driver;
 
 import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
 import java.net.MalformedURLException;
@@ -13,7 +14,7 @@ import java.util.concurrent.TimeUnit;
  * @author wwl
  */
 public class Driver {
-    private static AndroidDriver driver;
+    private static AppiumDriver<WebElement> driver;
 
     public static void start() {
         DesiredCapabilities desiredCapabilities = new DesiredCapabilities();
@@ -34,7 +35,7 @@ public class Driver {
         driver.manage().timeouts().implicitlyWait(6, TimeUnit.SECONDS);
     }
 
-    public static AppiumDriver getCurrentDriver(){
+    public static AppiumDriver<WebElement> getCurrentDriver(){
         return driver;
     }
 }
