@@ -5,6 +5,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebElement;
 
+import java.util.List;
+
 /**
  * Created by wwl on 2019/2/2.
  * @author wwl
@@ -18,6 +20,20 @@ public class BasePage {
             return Driver.getCurrentDriver().findElement(locator);
         }
     }
+
+    static List<WebElement> finds(By locator) {
+        List<WebElement> array;
+        try {
+            array = Driver.getCurrentDriver().findElements(locator);
+            return array;
+
+        } catch (NoSuchElementException e) {
+            Driver.getCurrentDriver().findElement(text("下次再说")).click();
+            array = Driver.getCurrentDriver().findElements(locator);
+            return array;
+        }
+    }
+
 
     static By locate(String locator) {
         if (locator.matches("/.*")) {
