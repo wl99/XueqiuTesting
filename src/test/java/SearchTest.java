@@ -38,6 +38,17 @@ public class SearchTest {
         assertThat(name, equalTo(exp));
     }
 
+    @ParameterizedTest
+    @CsvSource({
+            "600570, 恒生电子",
+            "600571, 信雅达",
+            "xiaomi, 小米集团-W"
+    })
+    void 股票搜索测试(String keyword, String exp) {
+        String name = searchPage.search(keyword).getByStock().getAll().get(0);
+        assertThat(name, equalTo(exp));
+    }
+
     @Test
     void 选择() {
         ArrayList<String> arrayList = searchPage.search("mi").addSelected();

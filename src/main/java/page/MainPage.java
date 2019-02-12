@@ -9,6 +9,8 @@ import org.openqa.selenium.By;
 public class MainPage extends BasePage {
     private By profile = By.id("user_profile_icon");
     private By search = By.id("home_search");
+    private By tab=By.id("tabs");
+    private By tab_name=By.id("tab_name");
 
     public static MainPage start() {
         Driver.start();
@@ -26,7 +28,8 @@ public class MainPage extends BasePage {
     }
 
     public OptionalPage gotoOptional(){
-        find(By.id("tabs")).findElements(By.id("tab_name")).get(1).click();
+        // 获取标签列表中的第二个
+        find(tab).findElements(tab_name).get(1).click();
         return new OptionalPage();
     }
 }
