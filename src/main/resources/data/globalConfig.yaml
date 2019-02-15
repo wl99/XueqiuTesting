@@ -1,0 +1,14 @@
+xueqiu:
+  username: 18606536555
+  password: ddddd
+  app: 1.apk
+appium:
+  url: http://localhost:4723/wd/hub
+  wait: 6
+  capabilities:
+    platformName: android
+    deviceName: huiwei
+    appPackage: com.xueqiu.android
+    appActivity: .view.WelcomeActivityAlias
+    autoGrantPermissions: true
+    aaa: fff
