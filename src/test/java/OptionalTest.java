@@ -1,6 +1,8 @@
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvFileSource;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.MethodSource;
 import page.MainPage;
 import page.OptionalPage;
 
@@ -24,16 +26,21 @@ public class OptionalTest {
     }
 
     @ParameterizedTest
-    @CsvSource({
-            "600570, 恒生电子",
-            "600571, 信雅达",
-            "xiaomi, 小米集团-W"
-    })
+    @CsvFileSource(resources = "/data/OptionalTest.csv", numLinesToSkip = 1)
     void 添加删除自选股票(String keyword, String stockName) {
         ArrayList<String> array = optionalPage.gotoSearch().search(keyword).addOptional().cancelOnOptionPage().getAll();
         assertThat(array, hasItems(stockName));
         ArrayList<String> array2 = optionalPage.delStock(stockName).getAll();
-        assertThat(array.size()-array2.size(),is(1));
+        assertThat(array.size() - array2.size(), is(1));
+    }
+
+    @ParameterizedTest
+    @MethodSource()
+    void 添加删除自选股票2(String keyword, String stockName) {
+        ArrayList<String> array = optionalPage.gotoSearch().search(keyword).addOptional().cancelOnOptionPage().getAll();
+        assertThat(array, hasItems(stockName));
+        ArrayList<String> array2 = optionalPage.delStock(stockName).getAll();
+        assertThat(array.size() - array2.size(), is(1));
     }
 
 }
