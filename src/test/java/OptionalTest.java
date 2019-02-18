@@ -1,7 +1,6 @@
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
-import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.MethodSource;
 import page.MainPage;
 import page.OptionalPage;
@@ -35,7 +34,7 @@ public class OptionalTest {
     }
 
     @ParameterizedTest
-    @MethodSource()
+    @MethodSource("common.FindData.getData#添加删除自选股票"+"/data/testData.yaml")
     void 添加删除自选股票2(String keyword, String stockName) {
         ArrayList<String> array = optionalPage.gotoSearch().search(keyword).addOptional().cancelOnOptionPage().getAll();
         assertThat(array, hasItems(stockName));

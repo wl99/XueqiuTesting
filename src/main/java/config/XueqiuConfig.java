@@ -11,24 +11,54 @@ import java.util.HashMap;
  * Created by wwl on 2019/2/15.
  */
 public class XueqiuConfig {
-    static String username = "18606535366";
-    static String password = "5454234";
-    static String app = "https://XXXX/xueeqiu.apk";
 
-    static ArrayList<HashMap<String, Object>> optionaldata = new ArrayList<>();
-    static ArrayList<HashMap<String, Object>> logindata = new ArrayList<>();
-//    static HashMap<String, ArrayList<HashMap<String, Object>>> data = new HashMap<String, ArrayList<HashMap<String, Object>>>();
 
-    static void load(String path){
+    private String username = "18606535366";
+    private String password = "5454234";
+    private String app = "https://XXXX/xueeqiu.apk";
+
+
+    private ArrayList<HashMap<String, Object>> optionaldata = new ArrayList<HashMap<String, Object>>();
+    private ArrayList<HashMap<String, Object>> logindata = new ArrayList<HashMap<String, Object>>();
+
+    static HashMap<String, ArrayList<HashMap<String, String>>> data = new HashMap<String, ArrayList<HashMap<String, String>>>();
+
+    public void load(String path) {
         ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
         try {
-            XueqiuConfig data = mapper.readValue(XueqiuConfig.class.getResource(path),XueqiuConfig.class);
-            return data;
+            data = mapper.readValue(XueqiuConfig.class.getResource(path), HashMap.class);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
+    public ArrayList getCase(String casename) {
+        return data.get(casename);
+    }
 
+    public ArrayList<HashMap<String, Object>> getLogindata() {
+        return logindata;
+    }
+
+    public ArrayList<HashMap<String, Object>> getOptionaldata() {
+        return optionaldata;
+    }
+
+
+    public String getPassword() {
+        return password;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public String getApp() {
+        return app;
+    }
+
+    public String getCases(String cases) {
+        return cases;
+    }
 
 }

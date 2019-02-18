@@ -1,15 +1,14 @@
-xueqiu:
-  optionaldata:
-    - code: 600570
-      stocknName:  恒生电子
-    - code: 600571
-      stocknName:  信雅达
-    - code: xiaomi
-      stocknName:  小米集团-W
-  logindata:
-    - phone: 18606535376
-      password: XXXXXXXX
-      exp: 用户名或密码错误
-    - phone: 1860653536
-      password: XXXXXXXX
-      exp: 手机号码填写错误
+添加删除自选股票:
+  - code: 600570
+    stocknName:  恒生电子
+  - code: 600571
+    stocknName:  信雅达
+  - code: xiaomi
+    stocknName:  小米集团-W
+密码登录:
+  - phone: 18606535376
+    password: XXXXXXXX
+    exp: 用户名或密码错误
+  - phone: 1860653536
+    password: XXXXXXXX
+    exp: 手机号码填写错误
