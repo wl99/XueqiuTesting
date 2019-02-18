@@ -4,27 +4,48 @@ package common;
 import config.XueqiuConfig;
 import org.junit.jupiter.params.provider.Arguments;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
+import java.util.*;
 import java.util.stream.Stream;
+
+import static org.junit.jupiter.params.provider.Arguments.arguments;
 
 public class FindData {
     static XueqiuConfig data = new XueqiuConfig();
 
 
-    static Stream<Arguments> getData(String casename, String filepath) {
-        data.load(filepath);
-        Arguments[] arg = new Arguments[3];
+    private static Stream<Arguments> getData(String casename) {
+        data.load("/data/testData.yaml");
+
         ArrayList cases = data.getCase(casename);
-        for (int i = 0; i < cases.size(); i++) {
-            HashMap d = (HashMap) cases.get(i);
-            arg[i]= Arguments.of(d.values());
+        Integer len = cases.size();
+        Arguments[] arg = new Arguments[len];
+        for (int i = 0; i < len; i++) {
+            HashMap<String, String> d = (HashMap<String, String>) cases.get(i);
+            Collection<String> valueCollection = d.values();
+            final int size = valueCollection.size();
+//            List<String> valueList = new ArrayList<String>(valueCollection);
+
+            String[] arr = new String[size];
+            d.values().toArray(arr);
+
+            if (size == 1) {
+                arg[i] = arguments(arr[0]);
+            } else if (size == 2) {
+                arg[i] = arguments(arr[0], arr[1]);
+            } else {
+                arg[i] = arguments(arr[0], arr[1], arr[2]);
+            }
         }
+
         return Arrays.stream(arg);
     }
 
-    static Stream<String> tinyStrings() {
-        return Stream.of(".", "oo", "OOO");
+    static Stream<Arguments> 添加删除自选股票() {
+        String method = Thread.currentThread().getStackTrace()[1].getMethodName();
+        return getData(method);
+    }
+
+    static Stream<Arguments> 密码登录() {
+        return getData("密码登录");
     }
 }

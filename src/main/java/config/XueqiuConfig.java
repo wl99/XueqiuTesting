@@ -57,8 +57,6 @@ public class XueqiuConfig {
         return app;
     }
 
-    public String getCases(String cases) {
-        return cases;
-    }
+
 
 }

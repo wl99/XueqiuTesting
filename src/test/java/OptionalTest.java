@@ -25,7 +25,7 @@ public class OptionalTest {
     }
 
     @ParameterizedTest
-    @CsvFileSource(resources = "/data/OptionalTest.csv", numLinesToSkip = 1)
+    @CsvFileSource(resources = "/data/OptionalTest.csv")
     void 添加删除自选股票(String keyword, String stockName) {
         ArrayList<String> array = optionalPage.gotoSearch().search(keyword).addOptional().cancelOnOptionPage().getAll();
         assertThat(array, hasItems(stockName));
@@ -34,7 +34,7 @@ public class OptionalTest {
     }
 
     @ParameterizedTest
-    @MethodSource("common.FindData.getData#添加删除自选股票"+"/data/testData.yaml")
+    @MethodSource("common.FindData#添加删除自选股票")
     void 添加删除自选股票2(String keyword, String stockName) {
         ArrayList<String> array = optionalPage.gotoSearch().search(keyword).addOptional().cancelOnOptionPage().getAll();
         assertThat(array, hasItems(stockName));

@@ -1,6 +1,7 @@
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
+import org.junit.jupiter.params.provider.MethodSource;
 import page.LoginPage;
 import page.MainPage;
 import page.ProfilePage;
@@ -30,11 +31,17 @@ public class LoginTest {
             "1860653536,XXXXXXXX,手机号码填写错误"
     })
     void 密码登录(String username, String password, String exp) {
-
         LoginPage loginPage = profilePage.gotoLogin();
         loginPage.passwordFail(username, password);
+        assertThat(loginPage.getMessage(), equalTo(exp));
+        profilePage=loginPage.gotoProfile();
+    }
 
-//        toast=loginPage.password("133333","23332");
+    @ParameterizedTest
+    @MethodSource("common.FindData#密码登录")
+    void 密码登录2(String username, String password, String exp) {
+        LoginPage loginPage = profilePage.gotoLogin();
+        loginPage.passwordFail(username, password);
         assertThat(loginPage.getMessage(), equalTo(exp));
         profilePage=loginPage.gotoProfile();
     }
