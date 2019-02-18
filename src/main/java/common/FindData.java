@@ -17,26 +17,21 @@ public class FindData {
         data.load("/data/testData.yaml");
 
         ArrayList cases = data.getCase(casename);
-        Integer len = cases.size();
+        int len = cases.size();
         Arguments[] arg = new Arguments[len];
         for (int i = 0; i < len; i++) {
             HashMap<String, String> d = (HashMap<String, String>) cases.get(i);
             Collection<String> valueCollection = d.values();
             final int size = valueCollection.size();
-//            List<String> valueList = new ArrayList<String>(valueCollection);
-
-            String[] arr = new String[size];
-            d.values().toArray(arr);
-
+            List valueList = new ArrayList<>(valueCollection);
             if (size == 1) {
-                arg[i] = arguments(arr[0]);
+                arg[i] = arguments(valueList.get(0));
             } else if (size == 2) {
-                arg[i] = arguments(arr[0], arr[1]);
+                arg[i] = arguments(valueList.get(0), valueList.get(1));
             } else {
-                arg[i] = arguments(arr[0], arr[1], arr[2]);
+                arg[i] = arguments(valueList.get(0), valueList.get(1), valueList.get(2));
             }
         }
-
         return Arrays.stream(arg);
     }
 
