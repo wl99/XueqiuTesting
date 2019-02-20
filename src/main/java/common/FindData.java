@@ -21,14 +21,8 @@ public class FindData {
         Arguments[] arg = new Arguments[len];
         for (int i = 0; i < len; i++) {
             HashMap<String, Object> d = cases.get(i);
-            Collection<Object> valueCollection = d.values();
-            final int size = valueCollection.size();
-            List valueList = new ArrayList<>(valueCollection);
-            Object[] objs = new Object[size];
-            for (int j = 0; j < size; j++) {
-                objs[j] = valueList.get(j);
-            }
-            arg[i] = arguments(objs);
+            Object[] o = d.values().toArray();
+            arg[i] = arguments(o);
         }
         return Arrays.stream(arg);
     }
