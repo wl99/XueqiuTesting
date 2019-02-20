@@ -21,7 +21,7 @@ public class XueqiuConfig {
     private ArrayList<HashMap<String, Object>> optionaldata = new ArrayList<HashMap<String, Object>>();
     private ArrayList<HashMap<String, Object>> logindata = new ArrayList<HashMap<String, Object>>();
 
-    static HashMap<String, ArrayList<HashMap<String, String>>> data = new HashMap<String, ArrayList<HashMap<String, String>>>();
+    private static HashMap<String, ArrayList<HashMap<String, Object>>> data = new HashMap<String, ArrayList<HashMap<String, Object>>>();
 
     public void load(String path) {
         ObjectMapper mapper = new ObjectMapper(new YAMLFactory());
@@ -32,7 +32,7 @@ public class XueqiuConfig {
         }
     }
 
-    public ArrayList getCase(String casename) {
+    public ArrayList<HashMap<String, Object>> getCase(String casename) {
         return data.get(casename);
     }
 
